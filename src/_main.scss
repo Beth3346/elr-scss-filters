@@ -1,0 +1,12 @@
+@import "elr-scss-functions/src/main";
+
+@mixin elr-filters($config: ()) {
+  $config: extend(
+    (
+      color: #333,
+    ),
+    $config
+  );
+
+  $color: map-get($config, color);
+}
