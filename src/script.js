@@ -78,15 +78,15 @@
 
   selectionFilters.forEach(item => {
     const buttons = Array.from(item.getElementsByTagName("button"));
+    const currentSelections =
+      item.getAttribute("data-selections").length > 0
+        ? item.getAttribute("data-selections").split(",")
+        : [];
 
     buttons.forEach((button, index) => {
       button.addEventListener("click", () => {
         const isActive = Array.from(button.classList).includes("active");
-        const currentSelections = item
-          .getAttribute("data-selections")
-          .split(",");
         const val = button.getAttribute("data-value");
-        console.log({ currentSelections });
 
         if (isActive) {
           button.classList.remove("active");
@@ -101,17 +101,17 @@
       });
 
       button.addEventListener("keyup", e => {
-        if (e.key === "ArrowLeft" && index !== items.length - 1) {
-          const next = items[index + 1];
+        if (e.key === "ArrowRight") {
+          const next = buttons[index + 1];
 
           if (next) {
-            next.querySelector("button").focus();
+            next.focus();
           }
-        } else if (e.key === "ArrowRight" && index !== 0) {
-          const prev = items[index - 1];
+        } else if (e.key === "ArrowLeft") {
+          const prev = buttons[index - 1];
 
           if (prev) {
-            prev.querySelector("button").focus();
+            prev.focus();
           }
         }
       });
