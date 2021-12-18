@@ -39,3 +39,90 @@
   position: relative;
   padding: ($base-fontsize * 1.5) 0;
 }
+
+.flex-container {
+  display: flex;
+
+  .filter-dropdown {
+    margin-right: 32px;
+  }
+}
+
+.filter-dropdown {
+  position: relative;
+  width: 200px;
+
+  button {
+    font-weight: 900;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 8px 12px;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+
+    &:hover {
+      border-color: $secondary-color;
+      background: $secondary-color;
+      color: $white;
+    }
+  }
+
+  > button {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &.active {
+    > button {
+      border-color: $secondary-color;
+      background: $secondary-color;
+      color: $white;
+    }
+
+    ul {
+      visibility: visible;
+      max-height: 300px;
+      opacity: 1;
+    }
+  }
+
+  ul,
+  li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  ul {
+    visibility: hidden;
+    max-height: 0;
+    opacity: 0;
+    z-index: 1;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    border: $border;
+    border-radius: $border-radius;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s;
+
+    li button {
+      background: $white;
+      border: 0;
+      color: $primary-color;
+      margin: 0;
+      // font-weight: 500;
+      font-size: 12px;
+      border-radius: 0;
+    }
+
+    li:first-child button {
+      border-radius: $border-radius $border-radius 0 0;
+    }
+
+    li:last-child button {
+      border-radius: 0 0 $border-radius $border-radius;
+    }
+  }
+}
