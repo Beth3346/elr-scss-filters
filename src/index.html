@@ -27,53 +27,82 @@
         <div class="demo-content">
           <h2 class="subheading">Dropdown Filter</h2>
           <div class="flex-container">
-            <div class="filter-dropdown">
-              <button class="js-filter-button">Colors <i class="fa fa-caret-down"></i></button>
+            <div class="filter-dropdown js-filter-dropdown">
+              <button
+                data-selection=""
+                class="js-filter-button"
+              ><span>Colors</span> <i class="fa fa-caret-down"></i></button>
               <ul>
                 <li>
-                  <button>Red</button>
+                  <button data-value="red">Red</button>
                 </li>
                 <li>
-                  <button>Orange</button>
+                  <button data-value="orange">Orange</button>
                 </li>
                 <li>
-                  <button>Yellow</button>
+                  <button data-value="yellow">Yellow</button>
                 </li>
                 <li>
-                  <button>Green</button>
+                  <button data-value="green">Green</button>
                 </li>
                 <li>
-                  <button>Blue</button>
+                  <button data-value="blue">Blue</button>
                 </li>
                 <li>
-                  <button>Purple</button>
+                  <button data-value="purple">Purple</button>
                 </li>
               </ul>
             </div>
-            <div class="filter-dropdown">
-              <button class="js-filter-button">Colors <i class="fa fa-caret-down"></i></button>
-              <ul>
+            <div class="filter-dropdown js-filter-dropdown">
+              <button
+                data-selection=""
+                class="js-filter-button"
+              ><span>Colors</span> <i class="fa fa-caret-down"></i></button>
+              <ul class="filter-buttons">
                 <li>
-                  <button>Red</button>
+                  <button data-value="red">Red</button>
                 </li>
                 <li>
-                  <button>Orange</button>
+                  <button data-value="orange">Orange</button>
                 </li>
                 <li>
-                  <button>Yellow</button>
+                  <button data-value="yellow">Yellow</button>
                 </li>
                 <li>
-                  <button>Green</button>
+                  <button data-value="green">Green</button>
                 </li>
                 <li>
-                  <button>Blue</button>
+                  <button data-value="blue">Blue</button>
                 </li>
                 <li>
-                  <button>Purple</button>
+                  <button data-value="purple">Purple</button>
                 </li>
               </ul>
             </div>
           </div>
+        </div>
+        <div class="demo-content">
+          <h2 class="subheading">Selection Filter</h2>
+          <ul data-selections="" class="selection-filters js-selection-filters">
+            <li>
+              <button data-value="red">Red</button>
+            </li>
+            <li>
+              <button data-value="orange">Orange</button>
+            </li>
+            <li>
+              <button data-value="yellow">Yellow</button>
+            </li>
+            <li>
+              <button data-value="green">Green</button>
+            </li>
+            <li>
+              <button data-value="blue">Blue</button>
+            </li>
+            <li>
+              <button data-value="purple">Purple</button>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

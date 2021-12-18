@@ -44,7 +44,7 @@
   display: flex;
 
   .filter-dropdown {
-    margin-right: 32px;
+    margin-right: 16px;
   }
 }
 
@@ -123,6 +123,30 @@
 
     li:last-child button {
       border-radius: 0 0 $border-radius $border-radius;
+    }
+  }
+}
+
+.selection-filters {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+
+  li {
+    margin: 4px;
+    padding: 0;
+
+    button {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 900;
+
+      &.active {
+        border-color: $tertiary-color;
+        background: $tertiary-color;
+        color: $white;
+      }
     }
   }
 }
