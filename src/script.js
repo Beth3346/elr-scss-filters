@@ -79,7 +79,7 @@
   selectionFilters.forEach(item => {
     const buttons = Array.from(item.getElementsByTagName("button"));
 
-    buttons.forEach(button => {
+    buttons.forEach((button, index) => {
       button.addEventListener("click", () => {
         const isActive = Array.from(button.classList).includes("active");
         const currentSelections = item
@@ -98,6 +98,22 @@
         }
 
         item.setAttribute("data-selections", currentSelections.join(","));
+      });
+
+      button.addEventListener("keyup", e => {
+        if (e.key === "ArrowLeft" && index !== items.length - 1) {
+          const next = items[index + 1];
+
+          if (next) {
+            next.querySelector("button").focus();
+          }
+        } else if (e.key === "ArrowRight" && index !== 0) {
+          const prev = items[index - 1];
+
+          if (prev) {
+            prev.querySelector("button").focus();
+          }
+        }
       });
     });
   });
