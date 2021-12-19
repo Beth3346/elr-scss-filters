@@ -69,9 +69,6 @@
 })();
 
 (() => {
-  // TODO: build badge list selection filter
-  // - should be able to select multiple items at the same time
-  // - should be able to navigation using arrow keys
   const selectionFilters = Array.from(
     document.getElementsByClassName("js-selection-filters")
   );

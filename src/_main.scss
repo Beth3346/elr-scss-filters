@@ -1,12 +1,145 @@
 @import "elr-scss-functions/src/main";
 
-@mixin elr-filters($config: ()) {
+@mixin elr-filter-dropdown($config: ()) {
   $config: extend(
     (
-      color: #333,
+      background-color: $primary-color,
+      accent-color: $secondary-color,
+      active-color: $tertiary-color,
+      text-color: $white,
+      width: 200px,
     ),
     $config
   );
 
-  $color: map-get($config, color);
+  $background-color: map-get($config, background-color);
+  $accent-color: map-get($config, accent-color);
+  $active-color: map-get($config, active-color);
+  $text-color: map-get($config, text-color);
+  $width: map-get($config, width);
+
+  position: relative;
+  width: $width;
+
+  button {
+    font-weight: 900;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 8px 12px;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+    background-color: $background-color;
+    border-color: $background-color;
+    color: $text-color;
+
+    &:hover {
+      border-color: $accent-color;
+      background: $accent-color;
+      color: $text-color;
+    }
+  }
+
+  > button {
+    display: flex;
+    justify-content: space-between;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #fff, 0 0 0 3px $background-color;
+      transition: box-shadow 0.3s;
+    }
+  }
+
+  &.active {
+    > button {
+      border-color: $accent-color;
+      background: $accent-color;
+      color: $text-color;
+    }
+
+    ul {
+      visibility: visible;
+      max-height: 300px;
+      opacity: 1;
+    }
+  }
+
+  ul,
+  li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  ul {
+    visibility: hidden;
+    max-height: 0;
+    opacity: 0;
+    z-index: 1;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    border: $border;
+    border-radius: $border-radius;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s;
+
+    li button {
+      background: $text-color;
+      border: 0;
+      color: $background-color;
+      margin: 0;
+      // font-weight: 500;
+      font-size: 12px;
+      border-radius: 0;
+    }
+
+    li:first-child button {
+      border-radius: $border-radius $border-radius 0 0;
+    }
+
+    li:last-child button {
+      border-radius: 0 0 $border-radius $border-radius;
+    }
+  }
+}
+
+@mixin elr-filter-buttons($config: ()) {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    margin: 4px;
+    padding: 0;
+
+    button {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 900;
+      background: transparent;
+      color: $primary-color;
+
+      &:hover {
+        border-color: $secondary-color;
+        background: $secondary-color;
+        color: $white;
+      }
+
+      &.active {
+        border-color: $tertiary-color;
+        background: $tertiary-color;
+        color: $white;
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px #fff, 0 0 0 3px $primary-color;
+        transition: box-shadow 0.3s;
+      }
+    }
+  }
 }
