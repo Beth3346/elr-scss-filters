@@ -27,19 +27,23 @@
         };
 
         btnItem.addEventListener("keyup", e => {
-          // e.stopPropagation();
+          const last = items[items.length - 1];
 
-          if (e.key === "ArrowDown" && index !== items.length - 1) {
+          if (e.key === "ArrowDown") {
             const next = items[index + 1];
 
             if (next) {
               next.querySelector("button").focus();
+            } else {
+              items[0].querySelector("button").focus();
             }
-          } else if (e.key === "ArrowUp" && index !== 0) {
+          } else if (e.key === "ArrowUp") {
             const prev = items[index - 1];
 
             if (prev) {
               prev.querySelector("button").focus();
+            } else {
+              last.querySelector("button").focus();
             }
           } else if (e.key === "Escape") {
             parent.classList.remove("active");
@@ -103,14 +107,82 @@
 
           if (next) {
             next.focus();
+          } else {
+            buttons[0].focus();
           }
         } else if (e.key === "ArrowLeft") {
           const prev = buttons[index - 1];
 
           if (prev) {
             prev.focus();
+          } else {
+            buttons[buttons.length - 1].focus();
           }
         }
+      });
+    });
+  });
+})();
+
+(() => {
+  const filters = Array.from(document.getElementsByClassName("filter-form"));
+  const values = [];
+
+  const updateValues = (evt, currentVals) => {
+    const isChecked = evt.target.checked;
+    const val = evt.target.value;
+
+    if (isChecked) {
+      currentVals.push(val);
+    } else {
+      const valIndex = currentVals.findIndex(o => o === val);
+
+      if (typeof valIndex === -1) {
+        console.error("could not find value", val);
+      } else {
+        currentVals.splice(valIndex, 1);
+      }
+    }
+
+    document.getElementById("valList").textContent = currentVals.join(", ");
+  };
+
+  filters.forEach(form => {
+    const options = Array.from(form.getElementsByTagName("input")).filter(
+      o => o.getAttribute("type") === "checkbox"
+    );
+
+    options.forEach((option, index) => {
+      const last = options[options.length - 1];
+
+      if (option.getAttribute("checked") !== null) {
+        values.push(option.getAttribute("value"));
+
+        document.getElementById("valList").textContent = values.join(", ");
+      }
+
+      option.addEventListener("keyup", e => {
+        if (e.key === "ArrowDown") {
+          const next = options[index + 1];
+
+          if (next) {
+            next.focus();
+          } else {
+            options[0].focus();
+          }
+        } else if (e.key === "ArrowUp") {
+          const prev = options[index - 1];
+
+          if (prev) {
+            prev.focus();
+          } else {
+            last.focus();
+          }
+        }
+      });
+
+      option.addEventListener("change", e => {
+        updateValues(e, values);
       });
     });
   });

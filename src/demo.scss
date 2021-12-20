@@ -55,3 +55,63 @@
 .selection-filters {
   @include elr-filter-buttons;
 }
+
+.filter-form {
+  border: $border;
+  border-radius: $border-radius;
+  padding: 16px;
+
+  p {
+    font-size: 14px;
+  }
+
+  .bold {
+    font-weight: 900;
+  }
+
+  .hide {
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 0;
+    margin: -1px;
+    border: 0;
+    overflow: hidden;
+    padding: 0;
+    max-height: 0;
+    display: none;
+  }
+
+  .control-group {
+    border-bottom: $border;
+  }
+
+  label {
+    margin: 8px;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    [type="checkbox"] {
+      margin-right: 8px;
+      padding: 0;
+      line-height: 1;
+      display: block;
+      transition: box-shadow 0.3s;
+      border-radius: 1px;
+      width: 10px;
+      height: 10px;
+      appearance: none;
+
+      &:focus {
+        outline: 0;
+        box-shadow: 0 0 0 1px #fff, 0 0 0 2px $link-color;
+      }
+    }
+
+    span {
+      display: block;
+      position: relative;
+      font-size: 14px;
+    }
+  }
+}
