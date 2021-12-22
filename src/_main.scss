@@ -5,7 +5,6 @@
     (
       background-color: $primary-color,
       accent-color: $secondary-color,
-      active-color: $tertiary-color,
       text-color: $white,
       width: 200px,
     ),
@@ -14,7 +13,6 @@
 
   $background-color: map-get($config, background-color);
   $accent-color: map-get($config, accent-color);
-  $active-color: map-get($config, active-color);
   $text-color: map-get($config, text-color);
   $width: map-get($config, width);
 
@@ -106,6 +104,21 @@
 }
 
 @mixin elr-filter-buttons($config: ()) {
+  $config: extend(
+    (
+      background-color: $primary-color,
+      accent-color: $secondary-color,
+      active-color: $tertiary-color,
+      text-color: $white,
+    ),
+    $config
+  );
+
+  $background-color: map-get($config, background-color);
+  $accent-color: map-get($config, accent-color);
+  $active-color: map-get($config, active-color);
+  $text-color: map-get($config, text-color);
+
   list-style: none;
   padding: 0;
   margin: 0;
@@ -121,25 +134,91 @@
       font-size: 12px;
       font-weight: 900;
       background: transparent;
-      color: $primary-color;
+      color: $background-color;
 
       &:hover {
-        border-color: $secondary-color;
-        background: $secondary-color;
+        border-color: $accent-color;
+        background: $accent-color;
         color: $white;
       }
 
       &.active {
-        border-color: $tertiary-color;
-        background: $tertiary-color;
+        border-color: $active-color;
+        background: $active-color;
         color: $white;
       }
 
       &:focus {
         outline: none;
-        box-shadow: 0 0 0 2px #fff, 0 0 0 3px $primary-color;
+        box-shadow: 0 0 0 2px #fff, 0 0 0 3px $background-color;
         transition: box-shadow 0.3s;
       }
+    }
+  }
+}
+
+@mixin elr-filter-checkboxes($config: ()) {
+  $config: extend(
+    (
+      background-color: $secondary-color,
+    ),
+    $config
+  );
+
+  $background-color: map-get($config, background-color);
+
+  border: $border;
+  border-radius: $border-radius;
+  padding: 16px;
+
+  p {
+    font-size: 14px;
+  }
+
+  .control-group {
+    border-bottom: $border;
+  }
+
+  label {
+    margin: 8px;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    [type="checkbox"] {
+      margin-right: 8px;
+      padding: 0;
+      line-height: 1;
+      display: block;
+      transition: box-shadow 0.3s;
+      border-radius: 2px;
+      width: 14px;
+      height: 14px;
+      appearance: none;
+      position: relative;
+
+      &:checked {
+        background-color: $background-color;
+        box-shadow: 0 0 0 1px #fff, 0 0 0 2px $background-color;
+
+        &::before {
+          content: "\2713";
+          position: absolute;
+          color: $white;
+          font-size: 14px;
+        }
+      }
+
+      &:focus {
+        outline: 0;
+        box-shadow: 0 0 0 1px #fff, 0 0 0 2px $link-color;
+      }
+    }
+
+    span {
+      display: block;
+      position: relative;
+      font-size: 14px;
     }
   }
 }
